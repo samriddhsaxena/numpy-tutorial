@@ -204,3 +204,201 @@ print(var.reshape(4,1))    # [[1] [2] [1] [2]]
 var1 = np.array([1,2,3,4,5,6],ndim = 4)
 print(var1)     # [[[[1] [2]] [[3] [4]] [[5] [6]]]]
 print(var1.shape)   # (2, 3, 2, 1)
+
+#Broadcasting in Numpy Array
+
+var = np.array([1,2,3,4])
+var1 = np.array([1,2])
+print(var + var1)   # [2 4 4 6]
+
+#Indexing Numpy Arrays
+
+var = np.array([1,2,3,4])
+print(var[2])   # 3
+var1 = np.array([[1,2,3,4],[5,6,7,8]])
+print(var1[1,2])    # 7
+
+#Slicing Numpy Arrays
+
+var = np.array([1,2,3,4])
+print(var[1:])  # [2 3 4]
+var1 = np.array([[1,2,3,4],[5,6,7,8]])
+print(var1[1,1:])   # [6 7 8]
+print(var1[:,1:])   # [[2 3 4] [6 7 8]]
+
+#Iteration in Numpy Array
+
+var = np.array([1,2,3,4])
+for i in var:
+    print(i)    # 1 2 3 4
+
+var1 = np.array([[1,2,3,4],[5,6,7,8]])
+for i in var1:
+    print(i)    # [1 2 3 4] [5 6 7 8]
+
+for i in var1:
+    for j in i:
+        print(j)    # 1 2 3 4 5 6 7 8
+
+#Copy V/S View
+
+var = np.array([1,2,3,4])
+var1 = var.copy()
+var1[0] = 10
+print(var)  # [1 2 3 4]
+print(var1) # [10 2 3 4]
+
+var = np.array([1,2,3,4])
+var1 = var.view()
+var1[0] = 10
+print(var)  # [10 2 3 4]
+print(var1) # [10 2 3 4]
+
+'''Copy owns the data, view does not own data
+   Copy of an array is new array, view of an array is the same array
+   Changes made in copy will not reflect in view and vice versa'''
+
+#Join Array
+
+var1 = np.array([1,2,3,4])
+var2 = np.array([5,6,7,8])
+var3 = np.concatenate((var1,var2))
+print(var3) # [1 2 3 4 5 6 7 8]
+
+var1 = np.array([[1,2],[3,4]])
+var2 = np.array([[5,6],[7,8]])
+var3 = np.concatenate((var1,var2),axis = 0)
+print(var3) # [[1 2] [3 4] [5 6] [7 8]]
+
+#Split Array
+
+var = np.array([1,2,3,4,5,6])
+var1 = np.array_split(var,3)
+print(var1) # [array([1, 2]), array([3, 4]), array([5, 6])]
+
+#Search Array
+
+var = np.array([1,2,3,4,2,5,2,5,6,7])
+print(np.where(var == 2))   # (array([1, 4, 6]),)
+
+#Search Sorted Array
+
+var = np.array([1,2,3,4,5,6,7,8])
+print(np.searchsorted(var,2))   # 1
+
+#Sort Array
+
+var = np.array([1,5,6,2,3,4,8,7])
+print(np.sort(var)) # [1 2 3 4 5 6 7 8]
+
+#Filter Array
+
+var = np.array([1,2,3,4,5,6,7,8])
+print(var[var % 2 == 0])    # [2 4 6 8]
+
+#Shuffle Array
+
+var = np.array([1,2,3,4,5,6,7,8])
+np.random.shuffle(var)
+print(var)  # [2 4 3 6 1 5 8 7]
+
+#Unique data in Numpy Array
+
+var = np.array([1,2,3,2,5,6,6,8])
+print(np.unique(var))    # [1 2 3 5 6 8]
+
+#Resize Array
+
+var = np.array([1,2,3,4,5,6,7,8])
+print(var.resize(4,2))  # [[1 2] [3 4] [5 6] [7 8]]
+
+#Insert in Array
+
+var = np.array([1,2,3,4,5,6,7,8])
+np.insert(var,2,10)    # [1 2 10 3 4 5 6 7 8]
+
+#Delete in Array
+
+var = np.array([1,2,3,4,5,6,7,8])
+np.delete(var,2)    # [1 2 4 5 6 7 8]
+
+#Append in Array
+
+var = np.array([1,2,3,4,5,6,7,8])
+np.append(var,10)    # [ 1  2  3  4  5  6  7  8 10]
+
+#Matrix in Numpy
+
+var = np.array([[1,2,3,4],[5,6,7,8]])
+print(var)  # [[1 2 3 4] [5 6 7 8]]
+print(type(var))    # <class 'numpy.ndarray'>
+
+#Multiplication of Matrix
+
+var1 = np.array([[1,2,3,4],[5,6,7,8]])
+var2 = np.array([[1,2,3,4],[5,6,7,8]])
+print(var1 * var2)  # [[ 1  4  9 16] [25 36 49 64]]
+
+#Transpose of Matrix
+
+var = np.array([[1,2,3,4],[5,6,7,8]])
+print(var.T)    # [[1 5] [2 6] [3 7] [4 8]]
+
+#Dot Product of Matrix
+
+var1 = np.array([[1,2,3,4],[5,6,7,8]])
+var2 = np.array([[1,2,3,4],[5,6,7,8]])
+print(var1.dot(var2))   # [[ 30  70] [ 70  174]]
+
+#Sum of Matrix
+
+var = np.array([[1,2,3,4],[5,6,7,8]])
+print(np.sum(var))  # 36
+
+#Mean of Matrix
+
+var = np.array([[1,2,3,4],[5,6,7,8]])
+print(np.mean(var)) # 4.5
+
+#Standard Deviation of Matrix
+
+var = np.array([[1,2,3,4],[5,6,7,8]])
+print(np.std(var))  # 2.8722813232690143
+
+#Variance of Matrix
+
+var = np.array([[1,2,3,4],[5,6,7,8]])
+print(np.var(var))  # 6.25
+
+#Median of Matrix
+
+var = np.array([[1,2,3,4],[5,6,7,8]])
+print(np.median(var))   # 4.5
+
+#Maximum of Matrix
+
+var = np.array([[1,2,3,4],[5,6,7,8]])
+print(np.max(var))  # 8
+
+#Minimum of Matrix
+
+var = np.array([[1,2,3,4],[5,6,7,8]])
+print(np.min(var))  # 1
+
+#Sort of Matrix
+
+var = np.array([[1,2,3,4],[5,6,7,8]])
+print(np.sort(var)) # [[1 2 3 4] [5 6 7 8]]
+
+#Index of Matrix
+
+var = np.array([[1,2,3,4],[5,6,7,8]])
+print(np.argmax(var))   # 7
+print(np.argmin(var))   # 0
+
+#Flatten of Matrix
+
+var = np.array([[1,2,3,4],[5,6,7,8]])
+print(var.flatten())    # [1 2 3 4 5 6 7 8]
+
+#*********************END**********************#
